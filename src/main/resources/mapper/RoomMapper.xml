@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hotel3.mapper.RoomMapper" >
+  <resultMap id="BaseResultMap" type="com.hotel3.model.Room" >
+    <id column="roomId" property="roomId" jdbcType="VARCHAR" />
+    <result column="orderType" property="roomType" jdbcType="VARCHAR" />
+    <result column="roomId" property="roomId" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="getRoom" resultType="com.hotel3.model.Room">
+     select * from inorder
+    <if test="roomId != null and roomId !=''">
+      where roomId like CONCAT('%','${roomId}','%' )
+    </if>
+    <if test="roomId != null and roomId !=''">
+      where orderType =#{orderType}
+    </if>
+    <if test="roomId != null and roomId !=''">
+      where status =#{status}
+    </if>
+    </select>
+</mapper>

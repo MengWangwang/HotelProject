@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hotel3.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.hotel3.model.User" >
+    <id column="userId" property="userId" jdbcType="INTEGER" />
+    <result column="userSex" property="userSex" jdbcType="VARCHAR" />
+    <result column="userName" property="userName" jdbcType="VARCHAR" />
+    <result column="userPassword" property="userPassword" jdbcType="VARCHAR" />
+    <result column="userType" property="userType" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="getUserByNameAndPsw" resultType="com.hotel3.model.User">
+        select * from USER where userName=#{userName} and userPassword =#{userPassword};
+  </select>
+  <insert id="addUser" parameterType="com.hotel3.model.User">
+        INSERT INTO USER  (userSex,userName,userPassword,userType) VALUES(#{userSex},#{userName},#{userPassword},#{userType});
+    </insert>
+</mapper>

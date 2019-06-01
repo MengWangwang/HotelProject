@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  <!--  <script src="js/jquery-3.3.1.min.js"></script>-->
+ </head>
+ <body>
+ <div align="center" id="login">
+     <div><h1>欢迎登录(有数据库连接)</h1></div><br>
+   <form action="login" th:action="@{/user/login}" method="post">
+       <h3>
+        <div>
+            账号：<input id="userName" name="userName" type="text" >
+       </div>
+       </h3>
+        <div ><h3>
+            密码：<input id="userPassword" name="userPassword" type="password" ></h3>
+        </div>
+        <div >
+            <input type="submit" value="登录" ></div>
+        <div ><h4>
+            <a href="zhuce" th:href="@{/templates/user}" style="text-decoration: none;color:gray"><font size="1">没有账号？免费注册</font></a>
+        </h4></div>
+       </form>
+
+  </div>
+   <!--    <script src="js/denglu.js"></script> <!--引入动态加载文件-->
+  </body>
+  </html>

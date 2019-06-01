@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hotel3.mapper.InOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.hotel3.model.InOrder" >
+    <id column="inId" property="inId" jdbcType="VARCHAR" />
+    <result column="orderType" property="orderType" jdbcType="VARCHAR" />
+    <result column="userId" property="userId" jdbcType="VARCHAR" />
+    <result column="userName" property="userName" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="VARCHAR" />
+    <result column="cellPhone" property="cellPhone" jdbcType="VARCHAR" />
+    <result column="IDnumber" property="IDnumber" jdbcType="VARCHAR" />
+    <result column="roomId" property="roomId" jdbcType="VARCHAR" />
+    <result column="inTime" property="inTime" jdbcType="VARCHAR" />
+    <result column="outTime" property="outTime" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="duration" property="duration" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="getInOrderAll" resultType="com.hotel3.model.InOrder">
+        select * from inorder ;
+  </select>
+  <insert id="addInOrder" parameterType="com.hotel3.model.InOrder">
+        INSERT INTO inorder
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="inId != null and inId !=''" >
+        inId,
+      </if>
+      <if test="orderType != null and orderType !=''" >
+        orderType,
+      </if>
+      <if test="userId != null and userId !=''" >
+        userId,
+      </if>
+      <if test="userName != null and userName !=''" >
+        userName,
+      </if>
+      <if test="gender != null and gender !=''" >
+        gender,
+      </if>
+      <if test="cellPhone != null and cellPhone !=''" >
+        cellPhone,
+      </if>
+      <if test="IDnumber != null and IDnumber !=''" >
+        IDnumber,
+      </if>
+      <if test="roomId != null and roomId !=''" >
+        roomId,
+      </if>
+      <if test="inTime != null and inTime !=''" >
+        inTime,
+      </if>
+      <if test="outTime != null and outTime !=''" >
+        outTime,
+      </if>
+      <if test="status != null and status !=''" >
+        status,
+      </if>
+      <if test="duration != null and duration !=''" >
+        duration,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="inId != null and inId !=''" >
+        #{inId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null and orderType !=''" >
+        #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null and userId !=''" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null and userName !=''" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null and gender !=''" >
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="cellPhone != null and cellPhone !=''" >
+        #{cellPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="IDnumber != null and IDnumber !=''" >
+        #{IDnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="roomId != null and roomId !=''" >
+        #{roomId,jdbcType=VARCHAR},
+      </if>
+      <if test="inTime != null and inTime !=''" >
+        #{inTime},
+      </if>
+      <if test="outTime != null and outTime !=''" >
+        #{outTime},
+      </if>
+      <if test="status != null and status !=''" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null and duration !=''" >
+        #{duration},
+      </if>
+    </trim>
+  </insert>
+  <select id="getOneInOrder" resultType="com.hotel3.model.InOrder">
+        select * from inorder where inId =#{inId};
+  </select>
+
+  <update id="updateInOrderById" parameterType="com.hotel3.model.InOrder" >
+    update inorder
+    <set >
+      <if test="userName != null and userName !=''" >
+        userName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null and gender !=''" >
+        gender = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="cellPhone != null and cellPhone !=''" >
+        cellPhone=#{cellPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="IDnumber != null and IDnumber !=''" >
+        IDnumber=#{IDnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="roomId != null and roomId !=''" >
+        roomId=#{roomId,jdbcType=VARCHAR},
+      </if>
+      <if test="inTime != null and inTime !=''" >
+        inTime=#{inTime},
+      </if>
+      <if test="outTime != null and outTime !=''" >
+        outTime=#{outTime},
+      </if>
+    </set>
+    where inId = #{inId,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="deleteInOrderById" parameterType="java.lang.String" >
+    delete from inorder
+    where inId = #{inId}
+  </delete>
+</mapper>
