@@ -41,9 +41,9 @@ public class InOrderController {
     public String addInOrder(InOrder inOrder){
 
         Date nowTime = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHH:mm:ss");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
         String dateString = formatter.format(nowTime);
-        String Inid=InOrderNum+dateString+((Math.random()*9+1)*10000);
+        String Inid=InOrderNum+dateString+((int)(Math.random()*9+1)*10000);
         inOrder.setInId(Inid);
         inOrder.setOrderType("Scene");
         inOrder.setStatus("10");
