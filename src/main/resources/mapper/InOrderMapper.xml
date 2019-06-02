@@ -3,6 +3,7 @@
 <mapper namespace="com.hotel3.mapper.InOrderMapper" >
   <resultMap id="BaseResultMap" type="com.hotel3.model.InOrder" >
     <id column="inId" property="inId" jdbcType="VARCHAR" />
+    <result column="preId" property="preId" jdbcType="VARCHAR" />
     <result column="orderType" property="orderType" jdbcType="VARCHAR" />
     <result column="userId" property="userId" jdbcType="VARCHAR" />
     <result column="userName" property="userName" jdbcType="VARCHAR" />
@@ -21,6 +22,9 @@
     <trim prefix="where 1=1" suffix=" "  suffixOverrides="," >
       <if test="inId != null and inId !=''" >
         and inId=#{inId,jdbcType=VARCHAR}
+      </if>
+      <if test="preId != null and preId !=''" >
+        and preId=#{preId,jdbcType=VARCHAR}
       </if>
       <if test="orderType != null and orderType !=''" >
         and orderType=#{orderType,jdbcType=VARCHAR}
@@ -76,6 +80,9 @@
       <if test="inId != null and inId !=''" >
         inId,
       </if>
+      <if test="preId != null and preId !=''" >
+        preId,
+      </if>
       <if test="orderType != null and orderType !=''" >
         orderType,
       </if>
@@ -125,6 +132,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="inId != null and inId !=''" >
         #{inId,jdbcType=VARCHAR},
+      </if>
+      <if test="preId != null and preId !=''" >
+        #{preId,jdbcType=VARCHAR},
       </if>
       <if test="orderType != null and orderType !=''" >
         #{orderType,jdbcType=VARCHAR},
@@ -185,6 +195,9 @@
       </if>
       <if test="gender != null and gender !=''" >
         gender = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="orderType != null and orderType !=''" >
+        orderType = #{orderType,jdbcType=INTEGER},
       </if>
       <if test="cellPhone != null and cellPhone !=''" >
         cellPhone=#{cellPhone,jdbcType=VARCHAR},

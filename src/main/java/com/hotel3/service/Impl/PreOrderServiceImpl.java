@@ -27,17 +27,17 @@ public class PreOrderServiceImpl implements PreOrderService {
     }
 
     @Override
-    public PreOrder getOnePreOrder(String inId) {
-        return preOrderMapper.getOnePreOrder(inId);
+    public PreOrder getOnePreOrder(String preId) {
+        return preOrderMapper.getOnePreOrder(preId);
     }
 
     @Override
-    public int updatePreOrderById(PreOrder inOrder) {
-        return preOrderMapper.updatePreOrderById(inOrder);
+    public int updatePreOrderById(PreOrder preOrder) {
+        return preOrderMapper.updatePreOrderById(preOrder);
     }
 
     @Override
-    public int deletePreOrderById(String inId) {
-        return preOrderMapper.deletePreOrderById(inId);
+    public int deletePreOrderById(String preId) {
+        return preOrderMapper.deletePreOrderById(preId);
     }
 }

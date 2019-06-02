@@ -9,9 +9,9 @@ import java.util.List;
 public interface PreOrderService {
 
     public List<PreOrder> getPreOrderAll();
-    public int addPreOrder(PreOrder inOrder);
-    public PreOrder getOnePreOrder(String inId);
+    public int addPreOrder(PreOrder preOrder);
+    public PreOrder getOnePreOrder(String preId);
     public int updatePreOrderById(PreOrder preOrder);
-    public int deletePreOrderById(String inId);
+    public int deletePreOrderById(String preId);
 
 }

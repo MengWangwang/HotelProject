@@ -13,11 +13,11 @@ public interface PreOrderMapper {
 
     public List<PreOrder> getPerOrderAll();
 
-    public int addPerOrder(PreOrder inOrder);
+    public int addPerOrder(PreOrder preOrder);
 
-    public PreOrder getOnePreOrder(@Param("inId") String inId);
+    public PreOrder getOnePreOrder(@Param("preId") String preId);
 
-    public int updatePreOrderById(PreOrder inOrder);
+    public int updatePreOrderById(PreOrder preOrder);
 
-    public int deletePreOrderById(@Param("inId") String inId);
+    public int deletePreOrderById(@Param("preId") String preId);
 }

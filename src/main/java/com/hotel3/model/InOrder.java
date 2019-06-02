@@ -7,6 +7,8 @@ public class InOrder {
 
     private String inId;
 
+    private String preId;
+
     private String orderType;
 
     private String userId;

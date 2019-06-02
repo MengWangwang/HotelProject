@@ -20,4 +20,53 @@
       where status =#{status}
     </if>
     </select>
+
+  <insert id="addRoom" parameterType="com.hotel3.model.Room">
+    INSERT INTO room
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+
+      <if test="roomId != null and roomId !=''" >
+        roomId,
+      </if>
+      <if test="roomType != null and roomType !=''" >
+        roomType,
+      </if>
+      <if test="status != null and status !=''" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roomId != null and roomId !=''" >
+        #{roomId,jdbcType=VARCHAR},
+      </if>
+      <if test="roomType != null and roomType !=''" >
+        #{roomType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null and status !=''" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="getOneRoom" resultType="com.hotel3.model.Room" parameterType="java.lang.String">
+        select * from room where roomId =#{roomId};
+  </select>
+
+  <update id="updateRoomById" parameterType="com.hotel3.model.Room">
+    update room
+    <set>
+      <if test="roomType != null and roomType !=''" >
+        roomType = #{roomType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null and status !=''" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+  where roomId = #{roomId,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="deleteRoomById" parameterType="java.lang.String" >
+    delete from room
+    where roomId = #{roomId,jdbcType=VARCHAR}
+  </delete>
 </mapper>

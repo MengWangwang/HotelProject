@@ -71,6 +71,7 @@ public class InOrderController {
         inOrder.setOutTime(inOrder.getOutTime().replace("T"," "));
         inOrder.setCreaterDate(CreaterFormatter.format(nowTime));
         inOrder.setCreaterBy(user.getUserName());
+        inOrder.setStatus("入住");
         inOrderService.addInOrder(inOrder);
         return "redirect:/inOrders";
     }
@@ -83,9 +84,14 @@ public class InOrderController {
         SimpleDateFormat formatter = new SimpleDateFormat("yyMMddHHmmss");
         SimpleDateFormat CreaterFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         InOrder inOrder=inOrderService.getOneInOrder(inId);
-        inOrder.setInTime(inOrder.getInTime().replace(" ","T"));
-        inOrder.setOutTime(inOrder.getOutTime().replace(" ","T"));
-
+        if(inOrder.getInTime()!=null)
+        {
+            inOrder.setInTime(inOrder.getInTime().replace(" ","T"));
+        }
+        if(inOrder.getOutTime()!=null)
+        {
+            inOrder.setOutTime(inOrder.getOutTime().replace(" ","T"));
+        }
         List<Room> Rooms= roomService.getRoom("","","");
         model.addAttribute("Rooms",Rooms);
         model.addAttribute("inOrder",inOrder);

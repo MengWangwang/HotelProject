@@ -53,57 +53,63 @@
 				<div th:replace="commons/bar::#sidebar(activeUri='preOrders')"></div>
 
 				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-					<form th:action="@{/perOrder}" method="post">
+					<form th:action="@{/inOrderByPreOrder}" method="post">
+						<input type="hidden" name="preId" th:value="${perOrder.preId}">
 						<div class="form-row">
-							<input type="hidden" name="_method" value="put" th:if="${perOrder!=null}"/>
-							<input type="hidden" name="inId" th:if="${perOrder!=null}" th:value="${perOrder.inId}">
-							<div class="form-group col-md-6">
+							<div class="form-group col-md-4">
 								<label>姓名</label>
-								<input name="userName" type="text" class="form-control" placeholder="万迎霜" th:value="${perOrder!=null}?${perOrder.userName}">
+								<input name="userName" type="text" class="form-control" readonly="readonly" th:value="${perOrder!=null}?${perOrder.userName}">
 							</div>
-							<div class="form-group col-md-6">
+							<div class="form-group col-md-4" readonly="readonly">
 								<label>性别</label><br/>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="gender" value="1" th:checked="${perOrder!=null}?${perOrder.gender==1}">
+									<input class="form-check-input" type="radio" readonly="readonly" name="gender" value="1" th:checked="${perOrder!=null}?${perOrder.gender=='1'}">
 									<label class="form-check-label">男</label>
 								</div>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="gender" value="0" th:checked="${perOrder!=null}?${perOrder.gender==0}">
+									<input class="form-check-input" type="radio" readonly="readonly" name="gender" value="0" th:checked="${perOrder!=null}?${perOrder.gender=='0'}">
 									<label class="form-check-label">女</label>
 								</div>
 							</div>
-						</div>
-						<div class="form-row">
-							<div class="form-group col-md-6">
+							<div class="form-group col-md-4">
 								<label>手机号</label>
-								<input name="cellPhone" type="phone" class="form-control" th:value="${perOrder!=null}?${perOrder.cellPhone}">
-							</div>
-							<div class="form-group col-md-6">
-								<label>身份证号码</label>
-								<input name="IDnumber" type="text" class="form-control" th:value="${perOrder!=null}?${perOrder.IDnumber}">
+								<input name="cellPhone" type="phone" class="form-control" readonly="readonly" th:value="${perOrder!=null}?${perOrder.cellPhone}">
 							</div>
 						</div>
 						<div class="form-row">
-							<div class="form-group col-md-6">
+
+							<div class="form-group col-md-4">
+								<label>入住时间</label>
+								<input name="inTime" type="datetime-local" class="form-control" th:value="${perOrder!=null}?${perOrder.preInTime}">
+							</div>
+							<div class="form-group col-md-4">
 								<label>房间号</label>
 								<select class="form-control" name="roomId">
-									<option th:selected="${perOrder!=null}?${room.roomId == perOrder.roomId}" th:value="${room.roomId}" th:each="room:${Rooms}" th:text="${room.roomId}">1</option>
+									<option th:value="${room.roomId}" th:each="room:${Rooms}" th:text="${room.roomId}">1</option>
 								</select>
 							</div>
-							<div class="form-group col-md-6">
-								<label>入住时间</label>
-								<input name="inTime" type="datetime-local" class="form-control" th:value="${perOrder!=null}?${perOrder.inTime}">
+							<div class="form-group col-md-4">
+								<label>订单类型</label>
+								<select class="form-control" name="orderType">
+									<option value=""></option>
+									<option value="钟点房订单">钟点房订单</option>
+									<option value="正常订单">正常订单</option>
+									<option value="活动订单">活动订单</option>
+								</select>
 							</div>
 						</div>
 						<div class="form-row">
-							<div class="form-group col-md-6">
-								<label>退房时间</label>
-								<input name="outTime" type="datetime-local" class="form-control" th:value="${perOrder!=null}?${perOrder.outTime}">
+							<div class="form-group col-md-4">
+								<label>身份证号码</label>
+								<input name="IDnumber" type="text" class="form-control">
 							</div>
 						</div>
 						<div class="form-row">
+
+						</div>
+						<div class="form-row">
 							<div class="form-group col-md-6">
-								<button type="submit" class="btn btn-primary" th:text="${perOrder!=null}?'修改':'添加'">添加</button>
+								<button type="submit" class="btn btn-primary">添加入住订单</button>
 							</div>
 						</div>
 					</form>

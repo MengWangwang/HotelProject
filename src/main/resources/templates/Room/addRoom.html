@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>Dashboard Template for Bootstrap</title>
+		<!-- Bootstrap core CSS -->
+		<link href="static/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet">
+
+		<!-- Custom styles for this template -->
+		<link href="static/css/dashboard.css" th:href="@{/static/css/dashboard.css}" rel="stylesheet">
+		<style type="text/css">
+			/* Chart.js */
+			
+			@-webkit-keyframes chartjs-render-animation {
+				from {
+					opacity: 0.99
+				}
+				to {
+					opacity: 1
+				}
+			}
+			
+			@keyframes chartjs-render-animation {
+				from {
+					opacity: 0.99
+				}
+				to {
+					opacity: 1
+				}
+			}
+			
+			.chartjs-render-monitor {
+				-webkit-animation: chartjs-render-animation 0.001s;
+				animation: chartjs-render-animation 0.001s;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--引入抽取的topbar-->
+		<!--模板名：会使用thymeleaf的前后缀配置规则进行解析-->
+		<div th:replace="commons/bar::topbar"></div>
+
+		<div class="container-fluid">
+			<div class="row">
+				<!--引入侧边栏-->
+				<div th:replace="commons/bar::#sidebar(activeUri='inOrders')"></div>
+
+				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+					<form th:action="@{/Room}" method="post">
+						<div class="form-row">
+							<input type="hidden" name="_method" value="put" th:if="${Room!=null}"/>
+							<input type="hidden" name="inId" th:if="${Room!=null}" th:value="${Room.roomId}">
+							<div class="form-group col-md-3">
+								<label>房间号</label>
+								<input name="roomId" type="text" class="form-control" th:value="${Room!=null}?${Room.roomId}">
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-3">
+								<label>房间类型</label>
+								<select class="form-control" name="roomType">
+									<option value="" th:selected="${Room!=null}?${Room.roomType==''}"></option>
+									<option value="单间" th:selected="${Room!=null}?${Room.roomType=='单间'}">单间</option>
+									<option value="标间" th:selected="${Room!=null}?${Room.roomType=='标间'}">标间</option>
+									<option value="大床房" th:selected="${Room!=null}?${Room.roomType=='大床房'}">大床房</option>
+								</select>
+							</div>
+
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-3">
+								<label>房间状态</label>
+								<select class="form-control" name="status">
+									<option value="" th:selected="${Room!=null}?${Room.status==''}"></option>
+									<option value="闲置" th:selected="${Room!=null}?${Room.status=='闲置'}">闲置</option>
+									<option value="占用" th:selected="${Room!=null}?${Room.status=='占用'}">占用</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<button type="submit" class="btn btn-primary" th:text="${Room!=null}?'修改':'添加'">添加</button>
+							</div>
+						</div>
+					</form>
+				</main>
+			</div>
+		</div>
+
+		<!-- Bootstrap core JavaScript
+    ================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js" th:src="@{/webjars/jquery/3.3.1/jquery.js}"></script>
+		<script type="text/javascript" src="asserts/js/popper.min.js" th:src="@{/webjars/popper.js/1.11.1/dist/popper.js}"></script>
+		<script type="text/javascript" src="asserts/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.js}"></script>
+
+		<!-- Icons -->
+		<script type="text/javascript" src="asserts/js/feather.min.js" th:src="@{/asserts/js/feather.min.js}"></script>
+		<script>
+			feather.replace()
+		</script>
+
+	</body>
+
+</html>

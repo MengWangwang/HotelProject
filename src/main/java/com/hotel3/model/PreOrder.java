@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class PreOrder {
 
-    private String inId;
+    private String preId;
 
     private String orderType;
 
@@ -17,16 +17,20 @@ public class PreOrder {
 
     private String cellPhone;
 
-    private String IDnumber;
+    private String roomType;
 
-    private String roomId;
+    private String preInTime;
 
-    private String inTime;
-
-    private String outTime;
+    private String preOutTime;
 
     private String status;
 
-    private String duration;
+    private String remarks;
+
+    private String createrBy;
+
+    private String createrDate;
+
+    private String arrivalTime;
 
 }
