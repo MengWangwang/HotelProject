@@ -20,7 +20,7 @@ USE `wys_hotel`;
 
 DROP TABLE IF EXISTS `inorder`;
 
-CREATE TABLE `inorder` (
+CREATE TABLE `preorder` (
   `inId` char(50) NOT NULL,
   `orderType` char(50) DEFAULT NULL,
   `userId` char(50) DEFAULT NULL,

@@ -16,8 +16,8 @@ public class InOrderServiceImpl implements InOrderService {
 
 
     @Override
-    public List<InOrder> getInOrderAll() {
-        return inOrderMapper.getInOrderAll();
+    public List<InOrder> getInOrderAll(InOrder inOrder) {
+        return inOrderMapper.getInOrderAll(inOrder);
     }
 
     @Override

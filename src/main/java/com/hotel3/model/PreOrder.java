@@ -3,7 +3,7 @@ package com.hotel3.model;
 import lombok.Data;
 
 @Data
-public class InOrder {
+public class PreOrder {
 
     private String inId;
 
@@ -28,13 +28,5 @@ public class InOrder {
     private String status;
 
     private String duration;
-
-    private String createrBy;
-
-    private String createrDate;
-
-    private String modifiedBy;
-
-    private String modifiedDate;
 
 }

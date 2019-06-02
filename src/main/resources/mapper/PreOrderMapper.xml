@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.hotel3.mapper.InOrderMapper" >
-  <resultMap id="BaseResultMap" type="com.hotel3.model.InOrder" >
+<mapper namespace="com.hotel3.mapper.PreOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.hotel3.model.PreOrder" >
     <id column="inId" property="inId" jdbcType="VARCHAR" />
     <result column="orderType" property="orderType" jdbcType="VARCHAR" />
     <result column="userId" property="userId" jdbcType="VARCHAR" />
@@ -16,62 +16,11 @@
     <result column="duration" property="duration" jdbcType="VARCHAR" />
   </resultMap>
 
-  <select id="getInOrderAll" resultType="com.hotel3.model.InOrder" parameterType="com.hotel3.model.InOrder">
-        select * from inorder
-    <trim prefix="where 1=1" suffix=" "  suffixOverrides="," >
-      <if test="inId != null and inId !=''" >
-        and inId=#{inId,jdbcType=VARCHAR}
-      </if>
-      <if test="orderType != null and orderType !=''" >
-        and orderType=#{orderType,jdbcType=VARCHAR}
-      </if>
-      <if test="userId != null and userId !=''" >
-        and userId=#{userId,jdbcType=VARCHAR}
-      </if>
-      <if test="userName != null and userName !=''" >
-        and userName=#{userName,jdbcType=VARCHAR}
-      </if>
-      <if test="gender != null and gender !=''" >
-        and gender=#{gender,jdbcType=INTEGER}
-      </if>
-      <if test="cellPhone != null and cellPhone !=''" >
-        and #{cellPhone,jdbcType=VARCHAR}
-      </if>
-      <if test="IDnumber != null and IDnumber !=''" >
-        and IDnumber=#{IDnumber,jdbcType=VARCHAR}
-      </if>
-      <if test="roomId != null and roomId !=''" >
-        and roomId=#{roomId,jdbcType=VARCHAR}
-      </if>
-      <if test="inTime != null and inTime !=''" >
-        and inTime>=#{inTime,jdbcType=VARCHAR}
-      </if>
-      <if test="outTime != null and outTime !=''" >
-        and outTime>=#{outTime,jdbcType=VARCHAR}
-      </if>
-      <if test="status != null and status !=''" >
-        and status=#{status,jdbcType=VARCHAR}
-      </if>
-      <if test="duration != null and duration !=''" >
-        and duration=#{duration,jdbcType=VARCHAR}
-      </if>
-      <if test="createrBy != null and createrBy !=''" >
-        and createrBy=#{createrBy,jdbcType=VARCHAR}
-      </if>
-      <if test="createrDate != null and createrDate !=''" >
-        and createrDate>=#{createrDate,jdbcType=VARCHAR}
-      </if>
-      <if test="modifiedBy != null and modifiedBy !=''" >
-        and modifiedBy=#{modifiedBy,jdbcType=VARCHAR}
-      </if>
-      <if test="modifiedDate != null and modifiedDate !=''" >
-        and modifiedDate>=#{modifiedDate,jdbcType=VARCHAR}
-      </if>
-    </trim>
-    ORDER BY createrDate DESC;
+  <select id="getPerOrderAll" resultType="com.hotel3.model.PreOrder">
+        select * from preorder ;
   </select>
-  <insert id="addInOrder" parameterType="com.hotel3.model.InOrder">
-        INSERT INTO inorder
+  <insert id="addPerOrder" parameterType="com.hotel3.model.PreOrder">
+        INSERT INTO preorder
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="inId != null and inId !=''" >
         inId,
@@ -109,18 +58,6 @@
       <if test="duration != null and duration !=''" >
         duration,
       </if>
-      <if test="createrBy != null and createrBy !=''" >
-        createrBy,
-      </if>
-      <if test="createrDate != null and createrDate !=''" >
-        createrDate,
-    </if>
-      <if test="modifiedBy != null and modifiedBy !=''" >
-        modifiedBy,
-    </if>
-      <if test="modifiedDate != null and modifiedDate !=''" >
-        modifiedDate,
-    </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="inId != null and inId !=''" >
@@ -148,37 +85,25 @@
         #{roomId,jdbcType=VARCHAR},
       </if>
       <if test="inTime != null and inTime !=''" >
-        #{inTime,jdbcType=VARCHAR},
+        #{inTime},
       </if>
       <if test="outTime != null and outTime !=''" >
-        #{outTime,jdbcType=VARCHAR},
+        #{outTime},
       </if>
       <if test="status != null and status !=''" >
         #{status,jdbcType=VARCHAR},
       </if>
       <if test="duration != null and duration !=''" >
-        #{duration,jdbcType=VARCHAR},
-      </if>
-      <if test="createrBy != null and createrBy !=''" >
-        #{createrBy,jdbcType=VARCHAR},
-      </if>
-      <if test="createrDate != null and createrDate !=''" >
-        #{createrDate,jdbcType=VARCHAR},
-      </if>
-      <if test="modifiedBy != null and modifiedBy !=''" >
-        #{modifiedBy,jdbcType=VARCHAR},
-      </if>
-      <if test="modifiedDate != null and modifiedDate !=''" >
-        #{modifiedDate,jdbcType=VARCHAR},
+        #{duration},
       </if>
     </trim>
   </insert>
-  <select id="getOneInOrder" resultType="com.hotel3.model.InOrder">
-        select * from inorder where inId =#{inId};
+  <select id="getOnePreOrder" resultType="com.hotel3.model.PreOrder">
+        select * from preorder where inId =#{inId};
   </select>
 
-  <update id="updateInOrderById" parameterType="com.hotel3.model.InOrder" >
-    update inorder
+  <update id="updatePreOrderById" parameterType="com.hotel3.model.PreOrder" >
+    update preorder
     <set >
       <if test="userName != null and userName !=''" >
         userName = #{userName,jdbcType=VARCHAR},
@@ -196,23 +121,17 @@
         roomId=#{roomId,jdbcType=VARCHAR},
       </if>
       <if test="inTime != null and inTime !=''" >
-        inTime=#{inTime,jdbcType=VARCHAR},
+        inTime=#{inTime},
       </if>
       <if test="outTime != null and outTime !=''" >
-        outTime=#{outTime,jdbcType=VARCHAR},
-      </if>
-      <if test="modifiedBy != null and modifiedBy !=''" >
-        modifiedBy=#{modifiedBy,jdbcType=VARCHAR},
-      </if>
-      <if test="modifiedDate != null and modifiedDate !=''" >
-        modifiedDate=#{modifiedDate,jdbcType=VARCHAR},
+        outTime=#{outTime},
       </if>
     </set>
     where inId = #{inId,jdbcType=VARCHAR}
   </update>
 
-  <delete id="deleteInOrderById" parameterType="java.lang.String" >
-    delete from inorder
-    where inId = #{inId,jdbcType=VARCHAR}
+  <delete id="deletePreOrderById" parameterType="java.lang.String" >
+    delete from preorder
+    where inId = #{inId}
   </delete>
 </mapper>

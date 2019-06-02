@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface InOrderService {
 
-    public List<InOrder> getInOrderAll();
+    public List<InOrder> getInOrderAll(InOrder inOrder);
     public int addInOrder(InOrder inOrder);
     public InOrder getOneInOrder(String inId);
     public int updateInOrderById(InOrder inOrder);

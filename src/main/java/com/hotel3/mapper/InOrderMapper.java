@@ -10,7 +10,7 @@ import java.util.List;
 @Component("InOrderMapper")
 public interface InOrderMapper {
 
-    public List<InOrder> getInOrderAll();
+    public List<InOrder> getInOrderAll(InOrder inOrder);
 
     public int addInOrder(InOrder inOrder);
 

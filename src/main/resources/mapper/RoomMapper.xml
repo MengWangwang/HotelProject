@@ -9,7 +9,7 @@
   </resultMap>
 
   <select id="getRoom" resultType="com.hotel3.model.Room">
-     select * from inorder
+     select * from room
     <if test="roomId != null and roomId !=''">
       where roomId like CONCAT('%','${roomId}','%' )
     </if>
