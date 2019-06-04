@@ -40,4 +40,9 @@ public class PreOrderServiceImpl implements PreOrderService {
     public int deletePreOrderById(String preId) {
         return preOrderMapper.deletePreOrderById(preId);
     }
+
+    @Override
+    public int OverPreOrder(String[] PreIds, String status) {
+        return preOrderMapper.OverPreOrder(PreIds,status);
+    }
 }

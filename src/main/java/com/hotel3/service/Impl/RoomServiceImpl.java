@@ -39,4 +39,9 @@ public class RoomServiceImpl implements RoomService {
     public int deleteRoomById(String roomId) {
         return roomMapper.deleteRoomById(roomId);
     }
+
+    @Override
+    public int OpenRoom(String[] roomIds,String status) {
+        return roomMapper.OpenRoom(roomIds,status);
+    }
 }

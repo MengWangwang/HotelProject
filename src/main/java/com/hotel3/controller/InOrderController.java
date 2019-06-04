@@ -1,19 +1,20 @@
 package com.hotel3.controller;
 
+import com.hotel3.mapper.Message;
 import com.hotel3.model.InOrder;
+import com.hotel3.model.PreOrder;
 import com.hotel3.model.Room;
 import com.hotel3.model.User;
 import com.hotel3.service.InOrderService;
+import com.hotel3.service.PreOrderService;
 import com.hotel3.service.RoomService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -25,6 +26,9 @@ public class InOrderController {
 
     @Resource(name="RoomService")
     private RoomService roomService;
+
+    @Resource(name="PreOrderService")
+    private PreOrderService preOrderService;
 
     private final String InOrderNum ="INON";
 
@@ -45,7 +49,7 @@ public class InOrderController {
         inOrder.setOutTime(inOrder.getOutTime().replace("T"," "));
         inOrder.setCreaterDate(inOrder.getCreaterDate().replace("T"," "));
         List<InOrder> InOrders= inOrderService.getInOrderAll(inOrder);
-        List<Room> Rooms= roomService.getRoom("","","");
+        List<Room> Rooms= roomService.getRoom("","","闲置");
         model.addAttribute("Rooms",Rooms);
         model.addAttribute("InOrders",InOrders);
         return "inOrder/inOrderList";
@@ -53,7 +57,7 @@ public class InOrderController {
 
     @GetMapping("/inOrder")
     public String toAddInOrderPage(Model model){
-        List<Room> Rooms= roomService.getRoom("","","");
+        List<Room> Rooms= roomService.getRoom("","","闲置");
         model.addAttribute("Rooms",Rooms);
         return "inOrder/addInOrder";
     }
@@ -72,6 +76,8 @@ public class InOrderController {
         inOrder.setCreaterDate(CreaterFormatter.format(nowTime));
         inOrder.setCreaterBy(user.getUserName());
         inOrder.setStatus("入住");
+        String[] RoomIds=new String[]{inOrder.getRoomId()};
+        roomService.OpenRoom(RoomIds,"占用");
         inOrderService.addInOrder(inOrder);
         return "redirect:/inOrders";
     }
@@ -92,7 +98,7 @@ public class InOrderController {
         {
             inOrder.setOutTime(inOrder.getOutTime().replace(" ","T"));
         }
-        List<Room> Rooms= roomService.getRoom("","","");
+        List<Room> Rooms= roomService.getRoom("","","闲置");
         model.addAttribute("Rooms",Rooms);
         model.addAttribute("inOrder",inOrder);
         return "inOrder/addInOrder";
@@ -119,5 +125,19 @@ public class InOrderController {
     public String deleteInOrder(@PathVariable("inId") String inId){
         inOrderService.deleteInOrderById(inId);
         return "redirect:/inOrders";
+    }
+
+    @PostMapping("/OverInOrder")
+    @ResponseBody
+    public Message OverInOrder(@RequestParam(value = "InIds[]")String[] InIds,@RequestParam(value = "RoomIds[]")String[] RoomIds, @RequestParam(value = "PreIds[]")String[] PreIds,HttpSession session){
+
+        User user= (User)session.getAttribute("loginUser");
+        inOrderService.OverInOrder(InIds,"结单",user.getUserName());
+        roomService.OpenRoom(RoomIds,"闲置");
+        if(!Arrays.asList(PreIds).contains("temp")){
+            preOrderService.OverPreOrder(PreIds,"结单");
+        }
+
+        return new Message("", "success");
     }
 }

@@ -148,4 +148,17 @@
     delete from preorder
     where preId = #{preId}
   </delete>
+
+  <update id="OverPreOrder" parameterType="java.lang.String">
+  update preorder
+  <set >
+    <if test="status != null and status !=''" >
+      status=#{status,jdbcType=VARCHAR},
+    </if>
+  </set>
+  WHERE preId IN
+  <foreach collection="PreIds" item="preId" index="index" open="(" close=")" separator=",">
+    #{preId}
+  </foreach>
+  </update>
 </mapper>

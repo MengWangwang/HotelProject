@@ -39,4 +39,9 @@ public class InOrderServiceImpl implements InOrderService {
     public int deleteInOrderById(String inId) {
         return inOrderMapper.deleteInOrderById(inId);
     }
+
+    @Override
+    public int OverInOrder(String[] inIds,String status,String modifiedBy) {
+        return inOrderMapper.OverInOrder(inIds,status,modifiedBy);
+    }
 }

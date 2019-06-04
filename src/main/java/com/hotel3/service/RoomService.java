@@ -12,4 +12,5 @@ public interface RoomService {
     public Room getOneRoom(String roomId);
     public int updateRoomById(Room room);
     public int deleteRoomById(String roomId);
+    public int OpenRoom(String[] PreIds,String status);
 }

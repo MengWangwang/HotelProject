@@ -20,4 +20,6 @@ public interface PreOrderMapper {
     public int updatePreOrderById(PreOrder preOrder);
 
     public int deletePreOrderById(@Param("preId") String preId);
+
+    public int OverPreOrder(@Param("PreIds") String[] PreIds,@Param("status") String status);
 }

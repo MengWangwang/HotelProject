@@ -78,7 +78,7 @@
 									<td th:text="${preorder.arrivalTime}"></td>
 									<td th:text="${preorder.remarks}"></td>
 									<td>
-										<a class="btn btn-sm btn-primary" th:href="@{/preOrder/}+${preorder.preId}">生成入住单</a>
+										<a class="btn btn-sm btn-primary" th:if="${preorder.status=='创建'}" th:href="@{/preOrder/}+${preorder.preId}">生成入住单</a>
 									</td>
 								</tr>
 							</tbody>

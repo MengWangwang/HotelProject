@@ -228,4 +228,22 @@
     delete from inorder
     where inId = #{inId,jdbcType=VARCHAR}
   </delete>
+
+  <update id="OverInOrder" parameterType="java.lang.String">
+    update inorder
+    <set >
+      <if test="status != null and status !=''" >
+        status=#{status,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedBy != null and modifiedBy !=''" >
+        modifiedBy=#{modifiedBy,jdbcType=VARCHAR},
+      </if>
+      modifiedDate= SYSDATE(),
+      outTime= SYSDATE()
+    </set>
+    WHERE inId IN
+    <foreach collection="inIds" item="inId" index="index" open="(" close=")" separator=",">
+      #{inId}
+    </foreach>
+  </update>
 </mapper>

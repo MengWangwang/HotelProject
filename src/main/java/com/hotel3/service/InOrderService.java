@@ -14,5 +14,6 @@ public interface InOrderService {
     public InOrder getOneInOrder(String inId);
     public int updateInOrderById(InOrder inOrder);
     public int deleteInOrderById(String inId);
+    public int OverInOrder(String[] inIds,String status,String modifiedBy);
 
 }

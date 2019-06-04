@@ -19,4 +19,6 @@ public interface InOrderMapper {
     public int updateInOrderById(InOrder inOrder);
 
     public int deleteInOrderById(@Param("inId") String inId);
+
+    public int OverInOrder(@Param("inIds") String[] inIds,@Param("status") String status,@Param("modifiedBy") String modifiedBy);
 }

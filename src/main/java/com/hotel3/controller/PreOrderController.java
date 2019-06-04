@@ -65,6 +65,8 @@ public class PreOrderController {
         inOrder.setCreaterDate(CreaterFormatter.format(nowTime));
         inOrder.setCreaterBy(user.getUserName());
         inOrder.setStatus("入住");
+        String[] RoomIds=new String[]{inOrder.getRoomId()};
+        roomService.OpenRoom(RoomIds,"占用");
         inOrderService.addInOrder(inOrder);
         PreOrder preOrder=new PreOrder();
         preOrder.setStatus("入住");
@@ -84,7 +86,7 @@ public class PreOrderController {
 
         preOrder.setCreaterDate(CreaterFormatter.format(nowTime));
         preOrder.setCreaterBy(user.getUserName());
-        List<Room> Rooms= roomService.getRoom("","","");
+        List<Room> Rooms= roomService.getRoom("","","闲置");
         model.addAttribute("Rooms",Rooms);
         model.addAttribute("perOrder",preOrder);
         return "preOrder/addInOrderByPreOrder";

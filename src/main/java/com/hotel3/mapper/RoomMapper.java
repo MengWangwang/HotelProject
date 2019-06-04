@@ -15,4 +15,5 @@ public interface RoomMapper {
     public Room getOneRoom(@Param("roomId") String roomId);
     public int updateRoomById(Room room);
     public int deleteRoomById(@Param("roomId") String roomId);
+    public int OpenRoom(@Param("roomIds") String[] roomIds,@Param("status") String status);
 }

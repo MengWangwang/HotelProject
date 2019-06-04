@@ -13,10 +13,10 @@
     <if test="roomId != null and roomId !=''">
       where roomId like CONCAT('%','${roomId}','%' )
     </if>
-    <if test="roomId != null and roomId !=''">
-      where orderType =#{orderType}
+    <if test="roomType != null and roomType !=''">
+      where roomType =#{roomType}
     </if>
-    <if test="roomId != null and roomId !=''">
+    <if test="status != null and status !=''">
       where status =#{status}
     </if>
     </select>
@@ -69,4 +69,17 @@
     delete from room
     where roomId = #{roomId,jdbcType=VARCHAR}
   </delete>
+
+  <update id="OpenRoom" parameterType="java.lang.String">
+    update room
+    <set>
+      <if test="status != null and status !=''" >
+        status=#{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    WHERE roomId IN
+    <foreach collection="roomIds" item="roomId" index="index" open="(" close=")" separator=",">
+      #{roomId}
+    </foreach>
+  </update>
 </mapper>
