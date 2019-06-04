@@ -8,6 +8,7 @@ import com.hotel3.service.InOrderService;
 import com.hotel3.service.PreOrderService;
 import com.hotel3.service.RoomService;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,6 +46,7 @@ public class PreOrderController {
         return "addInOrderByPreOrder";
     }
     @PostMapping("/inOrderByPreOrder")
+    @Transactional
     public String inOrderByPreOrder(InOrder inOrder, HttpSession session){
 
         Date nowTime = new Date();

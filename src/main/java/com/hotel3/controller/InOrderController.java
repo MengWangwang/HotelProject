@@ -9,6 +9,7 @@ import com.hotel3.service.InOrderService;
 import com.hotel3.service.PreOrderService;
 import com.hotel3.service.RoomService;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
@@ -62,6 +63,7 @@ public class InOrderController {
         return "inOrder/addInOrder";
     }
     @PostMapping("/inOrder")
+    @Transactional
     public String addInOrder(InOrder inOrder, HttpSession session){
 
         Date nowTime = new Date();
@@ -129,6 +131,7 @@ public class InOrderController {
 
     @PostMapping("/OverInOrder")
     @ResponseBody
+    @Transactional
     public Message OverInOrder(@RequestParam(value = "InIds[]")String[] InIds,@RequestParam(value = "RoomIds[]")String[] RoomIds, @RequestParam(value = "PreIds[]")String[] PreIds,HttpSession session){
 
         User user= (User)session.getAttribute("loginUser");
